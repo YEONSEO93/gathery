@@ -7,27 +7,29 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
+import { cn } from "~/lib/utils";
 
 const menus = [
   {
     name: "Rent & Flatmate",
-    to: "/rent-roommate",
+    to: "/rent-flatmate",
     items: [
       {
         name: "Find a Place",
         description: "Search for rental listings and shared housing",
-        to: "/rent-roommate/find",
+        to: "/rent-flatmate/find",
       },
       {
         name: "Find a Flatmate",
         description: "Connect with students looking for flatmates",
-        to: "/rent-roommate/flatmates",
+        to: "/rent-flatmate/flatmates",
       },
       {
         name: "Post a Listing",
         description: "List your place or roommate request",
-        to: "/rent-roommate/post",
+        to: "/rent-flatmate/post",
       },
     ],
   },
@@ -74,33 +76,40 @@ const menus = [
     ],
   },
   {
-    name: "Travel & Restaurant",
-    to: "/travel-restaurant",
+    name: "Travel & Events",
+    to: "/travel-events",
     items: [
       {
         name: "Student-Friendly Restaurants",
         description: "Discover affordable places to eat",
-        to: "/travel-restaurant/restaurants",
+        to: "/travel-events/restaurants",
       },
       {
         name: "Travel Deals & Tips",
         description: "Find budget-friendly travel options",
-        to: "/travel-restaurant/travel",
+        to: "/travel-events/travel",
+      },
+      {
+        name: "Local Events",
+        description: "Find upcoming student-friendly events",
+        to: "/travel-events/events",
       },
       {
         name: "Share Your Experience",
-        description: "Post your travel and food recommendations",
-        to: "/travel-restaurant/share",
+        description: "Post your travel, food, and event recommendations",
+        to: "/travel-events/share",
       },
     ],
   },
+  {
+    name: "Hello GPT",
+    to: "/hello-gpt",
+  },
 ];
-
-
 
 export default function Navigation() {
   return (
-    <nav className="flex px-20 h-16 items-center justify-between backdrop-blur fixed top-0 left-0 right-0 z-50 bg-background/50">
+    <nav className="flex px-20 h-16 items-center justify-between backdrop-blur fixed top-0 left-0 right-0 z-50 border-b bg-background/80 supports-[backdrop-filter]:bg-background/60">
       <div className="flex items-center">
         <Link to="/" className="font-bold tracking-tighter text-lg">
           Gathery 🐨
@@ -110,14 +119,47 @@ export default function Navigation() {
           <NavigationMenuList>
             {menus.map((menu) => (
               <NavigationMenuItem key={menu.name}>
-                <NavigationMenuTrigger>{menu.name}</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  {menu.items?.map((item) => (
-                    <NavigationMenuItem key={item.name}>
-                      <Link to={item.to}>{item.name}</Link>
-                    </NavigationMenuItem>
-                  ))}
-                </NavigationMenuContent>
+                {menu.items ? (
+                  <>
+                    <Link to={menu.to}>
+                      <NavigationMenuTrigger>{menu.name}</NavigationMenuTrigger>
+                    </Link>
+                    <NavigationMenuContent>
+                      <ul className="grid w-[600px] gap-3 p-4 grid-cols-2 md:w-[500px] lg:w-[600px]">
+                        {menu.items?.map((item) => (
+                          <NavigationMenuItem
+                            key={item.name}
+                            className={cn(
+                              "select-none rounded-md transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+                              item.to === "/products/promote" &&
+                                "col-span-2 bg-primary/10 hover:bg-primary/20 focus:bg-primary/20",
+                              item.to === "/jobs/submit" &&
+                                "col-span-2 bg-primary/10 hover:bg-primary/20 focus:bg-primary/20"
+                            )}
+                          >
+                            <NavigationMenuLink asChild>
+                              <Link
+                                className="block p-3 space-y-1 leading-none no-underline outline-none"
+                                to={item.to}
+                              >
+                                <span className="text-sm font-medium leading-none text-foreground">
+                                  {item.name}
+                                </span>
+                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                  {item.description}
+                                </p>
+                              </Link>
+                            </NavigationMenuLink>
+                          </NavigationMenuItem>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </>
+                ) : (
+                  <Link className={navigationMenuTriggerStyle()} to={menu.to}>
+                    {menu.name}
+                  </Link>
+                )}
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
