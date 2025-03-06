@@ -10,6 +10,10 @@ import {
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
 import { cn } from "~/lib/utils";
+import { Button } from "./ui/button";
+import { DropdownMenu, DropdownMenuSubTrigger, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+
 
 const menus = [
   {
@@ -107,7 +111,7 @@ const menus = [
   },
 ];
 
-export default function Navigation() {
+export default function Navigation({ isLoggedIn }: {isLoggedIn: boolean}) {
   return (
     <nav className="flex px-20 h-16 items-center justify-between backdrop-blur fixed top-0 left-0 right-0 z-50 border-b bg-background/80 supports-[backdrop-filter]:bg-background/60">
       <div className="flex items-center">
@@ -165,6 +169,21 @@ export default function Navigation() {
           </NavigationMenuList>
         </NavigationMenu>
       </div>
+      {isLoggedIn ? (
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Avatar>
+              <AvatarImage src="https://github.com/YEONSEO93.png" />
+              <AvatarFallback>img</AvatarFallback>
+            </Avatar>
+          </DropdownMenuTrigger>
+        </DropdownMenu> 
+     ) : (
+        <div className="flex items-center gap-2">
+          <Button asChild variant="secondary"><Link to="/auth/Join">Join</Link></Button>
+          <Button asChild><Link to="/auth/login">Login</Link></Button>
+        </div>
+      )}
     </nav>
   );
 }
