@@ -33,23 +33,44 @@ import {
 
 const menus = [
   {
-    name: "Rent & Flatmate",
-    to: "/rent-flatmate",
+    name: "Rent & Flatmates",
+    to: "/rent-flatmates",
     items: [
       {
         name: "Find a Place",
         description: "Search for rental listings and shared housing",
-        to: "/rent-flatmate/find",
+        to: "/rent-flatmates/find",
       },
       {
         name: "Find a Flatmate",
         description: "Connect with students looking for flatmates",
-        to: "/rent-flatmate/flatmates",
+        to: "/rent-flatmates/flatmates",
       },
       {
         name: "Post a Listing",
         description: "List your place or roommate request",
-        to: "/rent-flatmate/post",
+        to: "/rent-flatmates/post",
+      },
+    ],
+  },
+  {
+    name: "Study Mates",
+    to: "/study-mates",
+    items: [
+      {
+        name: "Find a Study Buddy",
+        description: "Connect with students for group study",
+        to: "/study-mates/find",
+      },
+      {
+        name: "Join a Study Group",
+        description: "Browse and join existing study groups",
+        to: "/study-mates/groups",
+      },
+      {
+        name: "Create a Study Group",
+        description: "Start a new study group",
+        to: "/study-mates/create",
       },
     ],
   },
@@ -75,34 +96,13 @@ const menus = [
     ],
   },
   {
-    name: "Study Mate",
-    to: "/study-mate",
-    items: [
-      {
-        name: "Find a Study Buddy",
-        description: "Connect with students for group study",
-        to: "/study-mate/find",
-      },
-      {
-        name: "Join a Study Group",
-        description: "Browse and join existing study groups",
-        to: "/study-mate/groups",
-      },
-      {
-        name: "Create a Study Group",
-        description: "Start a new study group",
-        to: "/study-mate/create",
-      },
-    ],
-  },
-  {
     name: "Travel & Events",
     to: "/travel-events",
     items: [
       {
-        name: "Student-Friendly Restaurants",
-        description: "Discover affordable places to eat",
-        to: "/travel-events/restaurants",
+        name: "Trip Mates",
+        description: "Find and connect with travel buddies",
+        to: "/travel-events/trip-mates",
       },
       {
         name: "Travel Deals & Tips",
@@ -191,7 +191,7 @@ export default function Navigation({ isLoggedIn, hasNotifications, hasMessages }
             <Link to="/my/notifications">
               <BellIcon className="size-4" />
               {hasNotifications && (
-                <div className="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full" />
+                <div className="absolute top-1.5 right-1.5 size-2 bg-primary rounded-full" />
               )}
             </Link>
           </Button>
@@ -199,7 +199,7 @@ export default function Navigation({ isLoggedIn, hasNotifications, hasMessages }
             <Link to="/my/messages">
               <MessageCircleIcon className="size-4" />
               {hasMessages && (
-                <div className="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full" />
+                <div className="absolute top-1.5 right-1.5 size-2 bg-primary rounded-full" />
               )}
             </Link>
           </Button>

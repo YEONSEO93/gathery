@@ -1,16 +1,36 @@
-import { Button } from "~/global/components/ui/button";
+import type { MetaFunction } from "react-router";
+import { FlatmatesCard } from "~/features/flatmates/components/flatmates-card";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Home | Gathery" },
+    { name: "description", content: "Welcome to Gathery" },
+  ];
+};
 
 export default function HomePage() {
   return (
-    <main className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-6">Welcome to Gathery 🐨</h1>
-      <p className="text-xl mb-10">
-        Gathery is a platform for students to find friends, study partners, and more.
-      </p>
-      <div className="flex gap-4">
-        <Button variant="default">Get Started</Button>
-        <Button variant="outline">Learn More</Button>
+    <div className="px-20">
+      <div className="grid grid-cols-3 gap-4">
+        <div>
+          <h2 className="text-5xl font-bold leading-tight tracking-tight">
+            Rent & Flatmates
+          </h2>
+          <p className="text-xl font-light text-foreground">
+            Find the perfect flatmate or place for your next move.
+          </p>
+        </div>
+        {Array.from({ length: 10 }).map((_, index) => (
+          <FlatmatesCard
+            id={`flatmateId-${index}`}
+            suburb="Suburb"
+            description="Flatmate Description"
+            commentsCount={2}
+            viewsCount={100}
+            votesCount={20}
+          />
+        ))}
       </div>
-    </main>
+    </div>
   );
 }
