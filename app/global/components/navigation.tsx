@@ -131,9 +131,9 @@ export default function Navigation() {
                             key={item.name}
                             className={cn(
                               "select-none rounded-md transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-                              item.to === "/products/promote" &&
+                              item.to === "/rent-flatmate/post" &&
                                 "col-span-2 bg-primary/10 hover:bg-primary/20 focus:bg-primary/20",
-                              item.to === "/jobs/submit" &&
+                              item.to === "/jobs/post" &&
                                 "col-span-2 bg-primary/10 hover:bg-primary/20 focus:bg-primary/20"
                             )}
                           >
