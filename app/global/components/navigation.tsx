@@ -207,7 +207,7 @@ export default function Navigation({ isLoggedIn, hasNotifications, hasMessages }
             <DropdownMenuTrigger asChild>
               <Avatar>
                 <AvatarImage src="https://github.com/YEONSEO93.png" />
-                <AvatarFallback>N</AvatarFallback>
+                <AvatarFallback>img</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
